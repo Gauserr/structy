@@ -11,8 +11,8 @@ const islandCount = (grid) => {
 }
 
 const traverse = (grid, r, c, visited) => {
+  if (r < 0 || r >= grid.length || c < 0 || c >= grid[0].length) return false
   if (visited[r][c] || grid[r][c] === 'W') return false
-  if (grid[r][c] === 'W') return false
   visited[r][c] = true
   const neighbors = [
     [r - 1, c],
@@ -20,24 +20,8 @@ const traverse = (grid, r, c, visited) => {
     [r, c - 1],
     [r, c + 1],
   ]
-  for (const [row, col] of neighbors) {
-    if (row >= 0 && row < grid.length && col >= 0 && col < grid[r].length) {
-      traverse(grid, row, col, visited)
-    }
-  }
+  for (const [row, col] of neighbors) traverse(grid, row, col, visited)
   return true
 }
 
-const grid = [
-  ['W', 'L', 'W', 'W', 'W'],
-  ['W', 'L', 'W', 'W', 'W'],
-  ['W', 'W', 'W', 'L', 'W'],
-  ['W', 'W', 'L', 'L', 'W'],
-  ['L', 'W', 'W', 'L', 'L'],
-  ['L', 'L', 'W', 'W', 'W'],
-]
-
-const result = islandCount(grid)
-console.log(result)
-
-//3
+module.exports = islandCount
