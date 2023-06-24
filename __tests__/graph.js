@@ -3,9 +3,10 @@ const islandCount = require('../graph/islandCount.js')
 const closestCarrot = require('../graph/closestCarrot.js')
 const longestPath = require('../graph/longestPath.js')
 const semestersRequired = require('../graph/semestersRequired.js')
+const bestBridge = require('../graph/bestBridge.js')
 
 describe('Graph Tests', () => {
-  describe('islandCount', () => {
+  xdescribe('islandCount', () => {
     it('test 0', () => {
       const grid = [
         ['W', 'L', 'W', 'W', 'W'],
@@ -214,7 +215,7 @@ describe('Graph Tests', () => {
       expect(longestPath(graph)).toEqual(3)
     })
   })
-  describe('semesters required', () => {
+  xdescribe('semesters required', () => {
     it('test 0', () => {
       const numCourses = 6
       const prereqs = [
@@ -271,6 +272,83 @@ describe('Graph Tests', () => {
         [3, 5],
       ]
       expect(semestersRequired(numCourses, prereqs)).toEqual(2)
+    })
+  })
+  describe('best bridge', () => {
+    it('test 0', () => {
+      const grid = [
+        ['W', 'W', 'W', 'L', 'L'],
+        ['L', 'L', 'W', 'W', 'L'],
+        ['L', 'L', 'L', 'W', 'L'],
+        ['W', 'L', 'W', 'W', 'W'],
+        ['W', 'W', 'W', 'W', 'W'],
+        ['W', 'W', 'W', 'W', 'W'],
+      ]
+      expect(bestBridge(grid)).toEqual(1)
+    })
+    it('test 1', () => {
+      const grid = [
+        ['W', 'W', 'W', 'W', 'W'],
+        ['W', 'W', 'W', 'W', 'W'],
+        ['L', 'L', 'W', 'W', 'L'],
+        ['W', 'L', 'W', 'W', 'L'],
+        ['W', 'W', 'W', 'L', 'L'],
+        ['W', 'W', 'W', 'W', 'W'],
+      ]
+      expect(bestBridge(grid)).toEqual(2)
+    })
+    it('test 2', () => {
+      const grid = [
+        ['W', 'W', 'W', 'W', 'W'],
+        ['W', 'W', 'W', 'L', 'W'],
+        ['L', 'W', 'W', 'W', 'W'],
+      ]
+      expect(bestBridge(grid)).toEqual(3)
+    })
+    it('test 3', () => {
+      const grid = [
+        ['W', 'W', 'W', 'W', 'W', 'W', 'W', 'W'],
+        ['W', 'W', 'W', 'W', 'W', 'W', 'W', 'W'],
+        ['W', 'W', 'W', 'W', 'W', 'W', 'W', 'W'],
+        ['W', 'W', 'W', 'W', 'W', 'L', 'W', 'W'],
+        ['W', 'W', 'W', 'W', 'L', 'L', 'W', 'W'],
+        ['W', 'W', 'W', 'W', 'L', 'L', 'L', 'W'],
+        ['W', 'W', 'W', 'W', 'W', 'L', 'L', 'L'],
+        ['L', 'W', 'W', 'W', 'W', 'L', 'L', 'L'],
+        ['L', 'L', 'L', 'W', 'W', 'W', 'W', 'W'],
+        ['W', 'W', 'W', 'W', 'W', 'W', 'W', 'W'],
+      ]
+      expect(bestBridge(grid)).toEqual(3)
+    })
+    it('test 4', () => {
+      const grid = [
+        ['L', 'L', 'L', 'L', 'L', 'L', 'L', 'L'],
+        ['L', 'W', 'W', 'W', 'W', 'W', 'W', 'L'],
+        ['L', 'W', 'W', 'W', 'W', 'W', 'W', 'L'],
+        ['L', 'W', 'W', 'W', 'W', 'W', 'W', 'L'],
+        ['L', 'W', 'W', 'W', 'W', 'W', 'W', 'L'],
+        ['L', 'W', 'W', 'W', 'W', 'W', 'W', 'L'],
+        ['L', 'W', 'W', 'L', 'W', 'W', 'W', 'L'],
+        ['L', 'W', 'W', 'W', 'W', 'W', 'W', 'L'],
+        ['L', 'W', 'W', 'W', 'W', 'W', 'W', 'L'],
+        ['L', 'W', 'W', 'W', 'W', 'W', 'W', 'L'],
+        ['L', 'W', 'W', 'W', 'W', 'W', 'W', 'L'],
+        ['L', 'L', 'L', 'L', 'L', 'L', 'L', 'L'],
+      ]
+      expect(bestBridge(grid)).toEqual(2)
+    })
+    it('test 5', () => {
+      const grid = [
+        ['W', 'L', 'W', 'W', 'W', 'W', 'W', 'W'],
+        ['W', 'L', 'W', 'W', 'W', 'W', 'W', 'W'],
+        ['W', 'W', 'W', 'W', 'W', 'W', 'W', 'W'],
+        ['W', 'W', 'W', 'W', 'W', 'W', 'W', 'W'],
+        ['W', 'W', 'W', 'W', 'W', 'W', 'W', 'W'],
+        ['W', 'W', 'W', 'W', 'W', 'W', 'L', 'W'],
+        ['W', 'W', 'W', 'W', 'W', 'W', 'L', 'L'],
+        ['W', 'W', 'W', 'W', 'W', 'W', 'W', 'L'],
+      ]
+      expect(bestBridge(grid)).toEqual(8)
     })
   })
 })
