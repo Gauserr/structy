@@ -2,6 +2,7 @@ const minimumIsland = require('../graph/minimumIsland.js')
 const islandCount = require('../graph/islandCount.js')
 const closestCarrot = require('../graph/closestCarrot.js')
 const longestPath = require('../graph/longestPath.js')
+const semestersRequired = require('../graph/semestersRequired.js')
 
 describe('Graph Tests', () => {
   describe('islandCount', () => {
@@ -211,6 +212,65 @@ describe('Graph Tests', () => {
         h: [],
       }
       expect(longestPath(graph)).toEqual(3)
+    })
+  })
+  describe('semesters required', () => {
+    it('test 0', () => {
+      const numCourses = 6
+      const prereqs = [
+        [1, 2],
+        [2, 4],
+        [3, 5],
+        [0, 5],
+      ]
+      expect(semestersRequired(numCourses, prereqs)).toEqual(3)
+    })
+    it('test 1', () => {
+      const numCourses = 7
+      const prereqs = [
+        [4, 3],
+        [3, 2],
+        [2, 1],
+        [1, 0],
+        [5, 2],
+        [5, 6],
+      ]
+      expect(semestersRequired(numCourses, prereqs)).toEqual(5)
+    })
+    it('test 2', () => {
+      const numCourses = 5
+      const prereqs = [
+        [1, 0],
+        [3, 4],
+        [1, 2],
+        [3, 2],
+      ]
+      expect(semestersRequired(numCourses, prereqs)).toEqual(2)
+    })
+    it('test 3', () => {
+      const numCourses = 12
+      const prereqs = []
+      expect(semestersRequired(numCourses, prereqs)).toEqual(1)
+    })
+    it('test 4', () => {
+      const numCourses = 3
+      const prereqs = [
+        [0, 2],
+        [0, 1],
+        [1, 2],
+      ]
+      expect(semestersRequired(numCourses, prereqs)).toEqual(3)
+    })
+    it('test 5', () => {
+      const numCourses = 6
+      const prereqs = [
+        [3, 4],
+        [3, 0],
+        [3, 1],
+        [3, 2],
+        [3, 5],
+      ]
+      expect(semestersRequired(numCourses, prereqs)).toEqual(2)
     })
   })
 })
